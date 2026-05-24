@@ -11,6 +11,7 @@ const filterLabels: Record<CardFilter, string> = {
 
 interface MainAreaProps {
   cards: Card[]
+  cardsLoading?: boolean
   activeFilter: CardFilter
   searchQuery: string
   onSearchChange: (query: string) => void
@@ -21,6 +22,7 @@ interface MainAreaProps {
 
 export function MainArea({
   cards,
+  cardsLoading = false,
   activeFilter,
   searchQuery,
   onSearchChange,
@@ -29,7 +31,7 @@ export function MainArea({
   onCopied,
 }: MainAreaProps) {
   const hasSearch = searchQuery.trim().length > 0
-  const isEmpty = cards.length === 0
+  const isEmpty = !cardsLoading && cards.length === 0
 
   return (
     <main className="flex min-w-0 flex-1 flex-col overflow-hidden bg-[var(--hh-canvas)]">
@@ -54,7 +56,14 @@ export function MainArea({
       </header>
 
       <div className="flex-1 overflow-y-auto px-4 py-5 md:px-10 md:py-8">
-        {isEmpty ? (
+        {cardsLoading ? (
+          <div className="flex h-52 flex-col items-center justify-center rounded-xl border border-[var(--hh-border)] bg-[var(--hh-surface)] px-4 shadow-[var(--hh-shadow-sm)] md:h-64">
+            <div className="h-6 w-6 animate-spin rounded-full border-2 border-[var(--hh-border)] border-t-[var(--hh-coral)]" />
+            <p className="mt-4 text-sm tracking-tight text-[var(--hh-text-muted)]">
+              正在从云端同步…
+            </p>
+          </div>
+        ) : isEmpty ? (
           <div className="flex h-52 flex-col items-center justify-center rounded-xl border border-dashed border-[var(--hh-border)] bg-[var(--hh-surface)] px-4 shadow-[var(--hh-shadow-sm)] md:h-64">
             <p className="text-center text-sm font-medium tracking-tight text-[var(--hh-text)]">
               {hasSearch ? '未找到匹配的卡片' : '暂无卡片'}

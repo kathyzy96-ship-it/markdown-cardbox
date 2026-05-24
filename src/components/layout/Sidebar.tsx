@@ -1,4 +1,5 @@
 import { ClipboardPaste, Code2, FileText, Layers, Link2 } from 'lucide-react'
+import { SidebarAccount } from '@/components/auth/SidebarAccount'
 import type { CardFilter } from '@/types/card'
 
 const navItems: { id: CardFilter; label: string; icon: typeof Layers }[] = [
@@ -14,6 +15,7 @@ interface SidebarProps {
   onPasteNew: () => void
   isPasting?: boolean
   onNavigate?: () => void
+  onOpenAuth?: () => void
   className?: string
 }
 
@@ -23,6 +25,7 @@ export function Sidebar({
   onPasteNew,
   isPasting = false,
   onNavigate,
+  onOpenAuth,
   className = '',
 }: SidebarProps) {
   const handleFilterChange = (filter: CardFilter) => {
@@ -90,6 +93,8 @@ export function Sidebar({
         />
         {isPasting ? '读取剪贴板…' : '一键粘贴 / 新建'}
       </button>
+
+      {onOpenAuth && <SidebarAccount onOpenAuth={onOpenAuth} />}
     </aside>
   )
 }

@@ -11,7 +11,7 @@ export function useClipboardPaste(
 
   const pasteFromClipboard = useCallback(
     async (
-      addCard: (card: Card) => void,
+      addCard: (card: Card) => void | Promise<void>,
       setActiveFilter: Dispatch<SetStateAction<CardFilter>>,
     ) => {
       setIsPasting(true)
@@ -25,7 +25,12 @@ export function useClipboardPaste(
       }
 
       const card = createCardFromClipboard(result.text)
-      addCard(card)
+      try {
+        await addCard(card)
+      } catch {
+        showToast('同步到云端失败，请检查网络后重试', 'error')
+        return
+      }
       setActiveFilter((current) =>
         current === 'all' || current === card.type ? current : card.type,
       )
