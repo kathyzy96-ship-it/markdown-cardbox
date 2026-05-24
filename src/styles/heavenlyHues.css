@@ -1,0 +1,24 @@
+/**
+ * Heavenly Hues — sole color source of truth for Cardbox.
+ * Warm cream canvas, mauve surfaces, coral accents, sepia typography.
+ */
+:root {
+  --hh-canvas: #faf6ef;
+  --hh-surface: #f9f6f1;
+  --hh-paste-btn: #a08f8d;
+  --hh-mauve: #e8e0e6;
+  --hh-coral: #e5ada0;
+  --hh-coral-deep: #df9f90;
+  --hh-text: #4a3f3a;
+  --hh-text-muted: rgb(74 63 58 / 0.58);
+  --hh-code-bg: #f5f0e8;
+  --hh-code-block: #f0ebe4;
+  --hh-border: rgb(74 63 58 / 0.1);
+  --hh-border-hover: rgb(74 63 58 / 0.16);
+  --hh-accent-ring: rgb(229 173 160 / 0.55);
+  --hh-mask-fade: linear-gradient(to bottom, #4a3f3a 78%, transparent);
+  --hh-shadow-sm: 0 1px 2px rgb(74 63 58 / 0.04), 0 2px 8px rgb(74 63 58 / 0.05);
+  --hh-shadow-md: 0 2px 4px rgb(74 63 58 / 0.05), 0 8px 24px rgb(74 63 58 / 0.07);
+  --hh-shadow-lg: 0 4px 8px rgb(74 63 58 / 0.05), 0 16px 40px rgb(74 63 58 / 0.09);
+  --hh-on-coral: #ffffff;
+}
